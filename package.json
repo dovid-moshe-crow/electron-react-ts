@@ -4,16 +4,17 @@
   "description": "New Electron app",
   "main": "./dist/main.js",
   "scripts": {
-    "dev:electron": "NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
-    "dev:react": "NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
-    "build:electron": "NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
-    "build:react": "NODE_ENV=production webpack --config webpack.react.config.js --mode production",
+    "dev:electron": "cross-env NODE_ENV=development webpack --config webpack.electron.config.js --mode development && electron .",
+    "dev:react": "cross-env NODE_ENV=development webpack-dev-server --config webpack.react.config.js --mode development",
+    "start": "concurrently \"npm:dev:react\" \"npm:dev:electron\"",
+    "build:electron": "cross-env NODE_ENV=production webpack --config webpack.electron.config.js --mode production",
+    "build:react": "cross-env NODE_ENV=production webpack --config webpack.react.config.js --mode production",
     "build": "npm run build:electron && npm run build:react",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
   "keywords": [],
-  "author": "elisealcala",
+  "author": "dovid moshe crow",
   "license": "ISC",
   "build": {
     "files": [
@@ -33,9 +34,15 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "babel-loader": "^8.1.0",
+    "concurrently": "^5.3.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^4.3.0",
     "electron": "^8.2.2",
     "electron-builder": "^22.7.0",
+    "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.2.0",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"

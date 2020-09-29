@@ -6,7 +6,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
     mainFields: ["main", "module", "browser"],
   },
-  entry: "./src/app.tsx",
+  entry: "./src/index.tsx",
   target: "electron-renderer",
   devtool: "source-map",
   module: {
@@ -17,6 +17,18 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.(s*)css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: "url-loader?limit=100000",
+      },
+      {
+        test: /\.(ico|jpe?g|png|gif|webp|svg|mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
+        loader: "file-loader",
       },
     ],
   },
